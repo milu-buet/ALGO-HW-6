@@ -4,7 +4,7 @@ import util
 
 def LCS_BRUTE_FORCE(x,y):
 	'''
-	Calculates the length of the longest common substring of x[:i+1] and y[:j+1]
+	Calculates the length of the longest common substring of x and y[:j+1]
 	with the brute force style
 	'''
 	
@@ -29,6 +29,11 @@ def LCS_BRUTE_FORCE(x,y):
 
 LCS_TABLE = {}
 def LCS(x,y,i,j):
+	
+	'''
+	Calculates the length of the longest common substring of x[:i+1] and y[:j+1]
+	when x[i] and x[j] is must to include
+	'''
 	if (i,j) not in LCS_TABLE:
 		if i < 0 or j < 0 :
 			LCS_TABLE[i,j] = 0
@@ -42,6 +47,11 @@ def LCS(x,y,i,j):
 
 
 def LCS_DRIVER(x,y):
+
+	'''
+	Calculates the length of the longest common substring of x and y
+	with Dynamic Programming
+	'''
 
 	max_lcs = 0
 	for i in range(1,len(x)):
@@ -63,7 +73,7 @@ def LCS_DRIVER(x,y):
 
 
 
-for n in range(1000,5000,500):
+for n in range(10,3000,300):
 
 	x = util.random_str(n)
 	y = util.random_str(n)
@@ -78,5 +88,7 @@ for n in range(1000,5000,500):
 	ans = LCS_DRIVER(x,y)
 	end = time.time()
 	print("DP:",end-start,ans)
+
+	print('')
 
 
